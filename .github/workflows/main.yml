@@ -37,5 +37,5 @@ jobs:
 
       - name: Executar pytest
         env:
-          DATABASE_URL: postgresql://postgres:admin@localhost:5433/pdsi2
+          DATABASE_URL: postgresql://postgres:1234@localhost:5433/pdsi2
         run: pytest teste.py
