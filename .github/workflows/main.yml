@@ -15,7 +15,7 @@ jobs:
           POSTGRES_PASSWORD: 1234
           POSTGRES_DB: pdsi2
         ports:
-          - 5433:5433  # Mapeia 5433 para dentro do container
+          - 5432:5432  # Mapeia 5433 para dentro do container
 
     steps:
       - name: pulling git repo
@@ -37,5 +37,5 @@ jobs:
 
       - name: Executar pytest
         env:
-          DATABASE_URL: postgresql://postgres:1234@localhost:5433/pdsi2
+          DATABASE_URL: postgresql://postgres:1234@localhost:5432/pdsi2
         run: pytest teste.py
