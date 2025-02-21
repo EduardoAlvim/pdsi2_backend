@@ -15,7 +15,7 @@ jobs:
           POSTGRES_PASSWORD: admin
           POSTGRES_DB: nome_database
         ports:
-          - 5433:5432  # Mapeia 5433 para dentro do container
+          - 5433:5433  # Mapeia 5433 para dentro do container
 
     steps:
       - name: pulling git repo
