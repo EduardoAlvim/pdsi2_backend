@@ -11,7 +11,7 @@ model.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 @app.get("/")
 def read_root():
- return {"Hello": "lalalalalalalala"}
+ return {"Hello": "lalalalalalalalala"}
 
 @app.get("/quadrado/{num}")
 def square(num: int):
