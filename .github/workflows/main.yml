@@ -15,7 +15,7 @@ jobs:
           POSTGRES_PASSWORD: admin
           POSTGRES_DB: nome_database
         ports:
-          - 5432:5432
+          - 5433:5432  # Mapeia a porta 5433 do host para a 5432 do container
 
     steps:
       - name: pulling git repo
@@ -33,9 +33,15 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Esperando o PostgreSQL ficar pronto
-        run: sleep 15
+        run: |
+          for i in {1..30}; do
+            nc -z localhost 5433 && echo "PostgreSQL está pronto!" && exit 0
+            echo "Aguardando PostgreSQL..."
+            sleep 2
+          done
+          echo "PostgreSQL não iniciou a tempo" && exit 1
 
       - name: Executar pytest
         env:
-          DATABASE_URL: postgresql://postgres:admin@localhost:5432/nome_database
+          DATABASE_URL: postgresql://postgres:admin@localhost:5433/nome_database
         run: pytest teste.py
